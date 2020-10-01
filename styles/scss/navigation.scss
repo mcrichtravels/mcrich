@@ -1,0 +1,23 @@
+.main-nav{
+	ul{
+
+	    display: flex;
+	    background: #fff;
+	    margin: 0;
+	    padding: 2%;
+	    -webkit-box-shadow: 0 16px 18px -6px #f5f4f4;
+	    -moz-box-shadow:0 16px 18px -6px #f5f4f4;
+	    box-shadow:0 16px 18px -6px #f5f4f4;
+
+		li{
+			
+			list-style: none;
+			margin: 0 2%;
+
+			a{
+				text-decoration: none;
+    			font-size: 0.9rem;
+			}
+		}
+	}
+}
