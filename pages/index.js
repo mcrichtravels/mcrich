@@ -8,7 +8,9 @@ export default function Home() {
   return (
       <>
         <Nav />
-        <h1>Pentration Testing</h1>
+        <h1>
+          Author Banner.
+        </h1>
       </>
   )
 }
