@@ -3,16 +3,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap');
 @import "normalize";
 @import "navigation";
+@import "contact";
+@import "footer";
+@import "partnersLogin";
 
 
 body{
     font-family: 'Poppins', sans-serif !important;
     margin: 0 auto;
+    padding: 0;
 }
 
 h1,h2{
     font-size: 1.6em;
-    color: #000000d9 !important;
+    // color: #000000d9 !important;
 }
 
 h3,h4{
@@ -29,9 +33,9 @@ p,a,qoute,span,blockquote{
     // color: #7b7b7bee !important;
 }
 
-a{
-    color:#000 !important;
-}
+// a{
+//     color:#000 !important;
+// }
 
 p{
     line-height: 1.7;
@@ -55,9 +59,9 @@ button{
     }
 }
 
-#___gatsby{
-    // background: linear-gradient(to bottom, #fff8f8 0%, #353535 100%);
-}
+// #___gatsby{
+//     background: linear-gradient(to bottom, #fff8f8 0%, #353535 100%);
+// }
 
 /*Grid Elements*/
 
