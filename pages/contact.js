@@ -1,10 +1,61 @@
 import Nav from "./components/nav"
 import Footer from "./components/footer"
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaFacebookF, FaTwitter,
-    FaInstagram, FaYoutube, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
+    FaInstagram, FaYoutube, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+    import emailjs from 'emailjs-com';
 
-export default class Contact extends React.Component {
+    const INITIAL_STATE = {
+        fullname: '',
+        email: '',
+        phone: '',
+        message: '',
+        error: '',
+    }
+
+class Contact extends React.Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = { ...INITIAL_STATE};
+    }
+
+    onSubmit = event => {
+        const {fullname, email,phone,message} = this.state;
+        const templateId = 'template_mqzrucr';
+
+        
+        const variables ={
+            full_name: fullname,
+            message: message,
+            phone: phone,
+            to_name: 'mcrichtravels@gmail.com',
+            from_name: email,
+        }
+
+        console.log(variables);
+
+        emailjs.send('service_v549dai', templateId, variables, 'user_7q6ASfxJDulWt0xuIM59z')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    
+        
+        
+        event.preventDefault();
+    }
+
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value});
+    };
     render(){
+        const {
+            fullname, email, phone, message, error, success
+        } = this.state;
+
+        const isInvalid = email == '' || phone == '';
         return (
             <>
                 <Nav />
@@ -46,30 +97,32 @@ export default class Contact extends React.Component {
                             <span className="circle one"></span>
                             <span className="circle two"></span>
     
-                            <form action="">
+                            <form onSubmit={this.onSubmit}>
                                 <h3 className="title">Contact Us</h3>
                                 <div className="input-container">
-                                    <input type="text" name="name" className="input" />
+                                    <input type="text" name="fullname" className="input" value={fullname} onChange={this.onChange}/>
                                     <label for="">Full Name</label>
                                     {/* <span>Full Name</span> */}
                                 </div>
                                 <div className="input-container">
-                                    <input type="email" name="email" className="input" />
+                                    <input type="email" name="email" className="input" value={email} onChange={this.onChange}/>
                                     <label for="">Email</label>
                                     {/* <span>Email</span> */}
                                 </div>
                                 <div className="input-container">
-                                    <input type="tel" name="phone" className="input" />
+                                    <input type="tel" name="phone" className="input" value={phone} onChange={this.onChange}/>
                                     <label for="">Phone</label>
                                     {/* <span>Phone</span> */}
                                 </div>
                                 <div className="input-container textarea">
-                                    <textarea name="message" className="input" ></textarea>
+                                    <textarea name="message" className="input" value={message} onChange={this.onChange} ></textarea>
                                     <label for="">Message</label>
                                     {/* <span>Message</span> */}
                                 </div>
     
-                                <input type="submit" value="Send" className="btn" />
+                                <input value="Send" className="btn" type="submit" disabled={isInvalid}/>
+                                {error && <p>{error.message}</p>}
+                                {success && <p>{success.message}</p>}
                             </form>
                         </div>
                     </div>
@@ -79,3 +132,5 @@ export default class Contact extends React.Component {
         )
     }
   }
+
+export default Contact
